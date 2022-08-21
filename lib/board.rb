@@ -1,4 +1,8 @@
 class Board
+
+  def initiaize
+    @board_array = Array.new(6, Array.new(7, " "))
+  end
   def draw_board
     ' 1 2 3 4 5 6 7 ' + "\n" +
     '┌─┬─┬─┬─┬─┬─┬─┐' + "\n" +
