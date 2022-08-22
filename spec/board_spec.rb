@@ -74,7 +74,7 @@ describe Board do
         color = 'white'
         updating_board.update_board(array, row_index, column_index, color)
       end
-      
+
       it 'updates that value' do
         expect(updating_board.board_array).to eq([[" ", " ", " ", " ", " ", " ", " "], 
           [" ", " ", " ", " ", " ", " ", " "], 
@@ -93,7 +93,7 @@ describe Board do
         color = 'black'
         updating_board.update_board(array, row_index, column_index, color)
       end
-      
+
       it 'updates that value' do
         expect(updating_board.board_array).to eq([[" ", " ", " ", " ", " ", " ", " "], 
           [" ", " ", " ", " ", " ", " ", " "], 
