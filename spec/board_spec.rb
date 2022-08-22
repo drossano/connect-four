@@ -3,13 +3,15 @@ require_relative '../lib/board'
 describe Board do
   subject(:game_board_array) { described_class.new }
   describe '#initialize' do
-    it 'creates a 2D array of 6 arrays containing 7 sstring spaces' do
-      expect(game_board_array.board_array).to eq([[" ", " ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " ", " "]])
+    it 'creates a 2D array of 7 arrays containing 6 string spaces' do
+      expect(game_board_array.board_array).to eq([[" ", " ", " ", " ", " ", " "], 
+        [" ", " ", " ", " ", " ", " "], 
+        [" ", " ", " ", " ", " ", " "], 
+        [" ", " ", " ", " ", " ", " "], 
+        [" ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " "]
+        ])
     end
   end
 

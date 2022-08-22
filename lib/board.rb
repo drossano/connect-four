@@ -5,7 +5,7 @@ class Board
   attr_reader :board_array, :white_piece, :black_piece
 
   def initialize
-    @board_array = Array.new(6) { Array.new(7, ' ') }
+    @board_array = Array.new(7) { Array.new(6, ' ') }
     @black_piece = '⚫'
     @white_piece = '⚪'
   end
