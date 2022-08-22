@@ -2,10 +2,12 @@
 
 # Stores, manipulates and displays game board.
 class Board
-  attr_reader :board_array
+  attr_reader :board_array, :white_piece, :black_piece
 
   def initialize
     @board_array = Array.new(6) { Array.new(7, ' ') }
+    @black_piece = '⚫'
+    @white_piece = '⚪'
   end
 
   def draw_board(array)
@@ -23,5 +25,13 @@ class Board
     "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
     "│ #{array[5][0]} │ #{array[5][1]} │ #{array[5][2]} │ #{array[5][3]} │ #{array[5][4]} │ #{array[5][5]} │ #{array[5][6]} │" + "\n" +
     '└───┴───┴───┴───┴───┴───┴───┘'
+  end
+
+  def update_board(array, row_index, column_index, color)
+    if color == 'white'
+      array[row_index][column_index] = @white_piece
+    elsif color == 'black'
+      array[row_index][column_index] = @black_piece
+    end
   end
 end
