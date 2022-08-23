@@ -27,11 +27,7 @@ class Board
     '└───┴───┴───┴───┴───┴───┴───┘'
   end
 
-  def update_board(array, row_index, column_index, color)
-    if color == 'white'
-      array[row_index][column_index] = @white_piece
-    elsif color == 'black'
-      array[row_index][column_index] = @black_piece
-    end
+  def column_full?(column)
+    column.none?(" ")
   end
 end

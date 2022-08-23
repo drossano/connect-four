@@ -67,43 +67,21 @@ describe Board do
     end
   end
 
-  describe '#update_board' do
-    subject(:updating_board) { described_class.new }
-    context 'when a valid index is given with the color white' do
-      before do
-        array = updating_board.board_array
-        row_index = 4
-        column_index = 3
-        color = 'white'
-        updating_board.update_board(array, row_index, column_index, color)
-      end
-
-      it 'updates that value' do
-        expect(updating_board.board_array).to eq([[" ", " ", " ", " ", " ", " ", " "], 
-          [" ", " ", " ", " ", " ", " ", " "], 
-          [" ", " ", " ", " ", " ", " ", " "], 
-          [" ", " ", " ", " ", " ", " ", " "], 
-          [" ", " ", " ", updating_board.white_piece, " ", " ", " "], 
-          [" ", " ", " ", " ", " ", " ", " "]])
+  describe '#column_full?' do
+    subject(:filling_board) { described_class.new }
+    context 'when the specified column isnt full' do
+      it 'returns false' do
+        piece = filling_board.instance_variable_get(:@black_piece)
+        non_full_column = [" ", " ", " ", " ", piece, piece]
+        expect(filling_board.column_full?(non_full_column)).to be false
       end
     end
 
-    context 'when a valid index is given with the color black' do
-      before do
-        array = updating_board.board_array
-        row_index = 2
-        column_index = 0
-        color = 'black'
-        updating_board.update_board(array, row_index, column_index, color)
-      end
-
-      it 'updates that value' do
-        expect(updating_board.board_array).to eq([[" ", " ", " ", " ", " ", " ", " "], 
-          [" ", " ", " ", " ", " ", " ", " "], 
-          [updating_board.black_piece, " ", " ", " ", " ", " ", " "], 
-          [" ", " ", " ", " ", " ", " ", " "], 
-          [" ", " ", " ", " ", " ", " ", " "], 
-          [" ", " ", " ", " ", " ", " ", " "]])
+    context 'when the specified column is full' do
+      it 'returns true' do
+        piece = filling_board.instance_variable_get(:@black_piece)
+        non_full_column = [piece, piece, piece, piece, piece, piece]
+        expect(filling_board.column_full?(non_full_column)).to be true
       end
     end
   end
