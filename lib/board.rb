@@ -44,6 +44,9 @@ class Board
     if column_empty?(column)
       column.shift
       column.push(piece)
+    else
+      first_empty_space = column.rindex(" ")
+      column[first_empty_space] = piece
     end
   end
 end

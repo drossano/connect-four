@@ -110,5 +110,16 @@ describe Board do
         expect(column).to eq([" ", " ", " ", " ", " ", white_piece])
       end
     end
+
+    context 'when the column has one piece in it' do
+      it 'drops the new piece on top of the existing piece' do
+        white_piece = dropping_piece.instance_variable_get(:@white_piece)
+        black_piece = dropping_piece.instance_variable_get(:@black_piece)
+        column = [" ", " ", " ", " ", " ", black_piece]
+        allow(dropping_piece).to receive(:column_empty?).with(column).and_return(false)
+        dropping_piece.drop_piece(column, "white")
+        expect(column).to eq([" ", " ", " ", " ", white_piece, black_piece])
+      end
+    end
   end
 end
