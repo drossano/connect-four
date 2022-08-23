@@ -30,4 +30,20 @@ class Board
   def column_full?(column)
     column.none?(" ")
   end
+
+  def column_empty?(column)
+  end
+
+  def drop_piece(column, color)
+    piece = if color == 'black'
+              @black_piece
+            else
+              @white_piece
+            end
+
+    if column_empty?(column)
+      column.shift
+      column.push(piece)
+    end
+  end
 end

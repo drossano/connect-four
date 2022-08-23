@@ -85,4 +85,30 @@ describe Board do
       end
     end
   end
+
+  describe '#drop_piece' do
+    subject(:dropping_piece) { described_class.new}
+    context 'when the column is empty and its the black pieces turn' do
+      column = Array.new(6, ' ')
+      before do
+        allow(dropping_piece).to receive(:column_empty?).with(column).and_return(true)
+        dropping_piece.drop_piece(column, "black")
+      end
+      it 'places a black piece at the bottom of it' do
+        black_piece = dropping_piece.instance_variable_get(:@black_piece)
+        expect(column).to eq([" ", " ", " ", " ", " ", black_piece])
+      end
+    end
+    context 'when the column is empty and its the white pieces turn' do
+      column = Array.new(6, ' ')
+      before do
+        allow(dropping_piece).to receive(:column_empty?).with(column).and_return(true)
+        dropping_piece.drop_piece(column, "white")
+      end
+      it 'places a black piece at the bottom of it' do
+        white_piece = dropping_piece.instance_variable_get(:@white_piece)
+        expect(column).to eq([" ", " ", " ", " ", " ", white_piece])
+      end
+    end
+  end
 end
