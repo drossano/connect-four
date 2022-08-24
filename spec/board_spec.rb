@@ -121,5 +121,25 @@ describe Board do
         expect(column).to eq([" ", " ", " ", " ", white_piece, black_piece])
       end
     end
+
+    context 'when the column has three pieces in it' do
+      it 'drops the new piece on top of the existing pieces' do
+        white_piece = dropping_piece.instance_variable_get(:@white_piece)
+        black_piece = dropping_piece.instance_variable_get(:@black_piece)
+        column = [" ", " ", " ", black_piece, white_piece, black_piece]
+        allow(dropping_piece).to receive(:column_empty?).with(column).and_return(false)
+        dropping_piece.drop_piece(column, "white")
+        expect(column).to eq([" ", " ", white_piece, black_piece, white_piece, black_piece])
+      end
+    end
+
+    context 'when the column is full' do
+      it 'returns an error' do
+        black_piece = dropping_piece.instance_variable_get(:@black_piece)
+        column = Array.new(6, black_piece)
+        allow(dropping_piece).to receive(:column_full?).with(column).and_return(true)
+        expect(dropping_piece.drop_piece(column, 'white')).to eq("This column is full, choose another one.")
+      end
+    end
   end
 end

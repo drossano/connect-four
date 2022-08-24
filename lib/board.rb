@@ -34,19 +34,27 @@ class Board
   def column_empty?(column)
   end
 
-  def drop_piece(column, color)
-    piece = if color == 'black'
-              @black_piece
-            else
-              @white_piece
-            end
-
-    if column_empty?(column)
-      column.shift
-      column.push(piece)
+  def pick_piece(color)
+    if color == 'black'
+      @black_piece
     else
-      first_empty_space = column.rindex(" ")
-      column[first_empty_space] = piece
+      @white_piece
     end
+  end
+
+  def drop_piece(column, color)
+    piece = pick_piece(color)
+    unless column_full?(column)
+      if column_empty?(column)
+        column.shift
+        column.push(piece)
+      else
+        first_empty_space = column.rindex(" ")
+        column[first_empty_space] = piece
+      end
+    else
+      "This column is full, choose another one."
+    end
+    
   end
 end
