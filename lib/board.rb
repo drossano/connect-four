@@ -32,6 +32,7 @@ class Board
   end
 
   def column_empty?(column)
+    column.all?(" ")
   end
 
   def pick_piece(color)
