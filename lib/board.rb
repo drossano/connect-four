@@ -54,7 +54,7 @@ class Board
         column[first_empty_space] = piece
       end
     else
-      "This column is full, choose another one."
+      false
     end
     
   end

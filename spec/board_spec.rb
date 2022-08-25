@@ -138,7 +138,7 @@ describe Board do
         black_piece = dropping_piece.instance_variable_get(:@black_piece)
         column = Array.new(6, black_piece)
         allow(dropping_piece).to receive(:column_full?).with(column).and_return(true)
-        expect(dropping_piece.drop_piece(column, 'white')).to eq("This column is full, choose another one.")
+        expect(dropping_piece.drop_piece(column, 'white')).to be false
       end
     end
   end
