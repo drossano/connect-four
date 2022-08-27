@@ -69,4 +69,8 @@ class Board
       end
     end
   end
+
+  def row_win(board_array)
+    column_win(board_array.transpose)
+  end
 end
