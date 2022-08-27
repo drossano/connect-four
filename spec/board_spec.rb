@@ -142,4 +142,30 @@ describe Board do
       end
     end
   end
+  
+  describe '#column_win' do
+    subject(:board_column) { described_class.new}
+    context 'when the first column has four white pieces in a row' do
+      it 'returns true' do
+        array = board_column.board_array
+        array[0] = ['⚪', '⚪', '⚪', '⚪', '⚫', '⚫']
+        expect(board_column.column_win(array)).to be true
+      end
+    end
+
+    context 'when the third column has four black pieces in a row' do
+      it 'returns true' do
+        array = board_column.board_array
+        array[2] = ['⚪', '⚪', '⚫', '⚫', '⚫', '⚫']
+        expect(board_column.column_win(array)).to be true
+      end
+    end
+
+    context 'when there are no pieces' do
+      it 'returns false' do
+        array = board_column.board_array
+        expect(board_column.column_win(array)).to be false
+      end
+    end
+  end
 end
