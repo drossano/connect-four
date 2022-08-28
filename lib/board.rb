@@ -131,4 +131,8 @@ class Board
     end
     column_hash
   end
+
+  def diagonal_win(array)
+    column_win(diagonal_to_row(array))
+  end
 end

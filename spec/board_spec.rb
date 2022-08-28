@@ -237,4 +237,38 @@ describe Board do
       )
     end
   end
+
+  describe '#diagonal_win' do
+    subject(:board_diagonal) { described_class.new }
+    context 'when 0,0 to 3,3 has four white pieces in a row' do
+      it 'returns true' do
+        array = board_diagonal.board_array
+        array[0][0] = '⚪'
+        array[1][1] = '⚪'
+        array[2][2] = '⚪'
+        array[3][3] = '⚪'
+        array[4][4] = '⚫'
+        array[5][5] = '⚫'
+        expect(board_diagonal.diagonal_win(array)).to be true
+      end
+    end
+    context 'when 0,5 to 3,2 has four white pieces in a row' do
+      it 'returns true' do
+        array = board_diagonal.board_array
+        array[0][5] = '⚪'
+        array[1][4] = '⚪'
+        array[2][3] = '⚪'
+        array[3][2] = '⚪'
+        array[4][1] = '⚫'
+        array[5][0] = '⚫'
+        expect(board_diagonal.diagonal_win(array)).to be true
+      end
+    end
+    context 'when there are no pieces' do
+      it 'returns false' do
+        array = board_diagonal.board_array
+        expect(board_diagonal.diagonal_win(array)).to be false
+      end
+    end
+  end
 end
