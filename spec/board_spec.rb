@@ -225,14 +225,16 @@ describe Board do
     end
   end
 
-  # describe '#diagonal_to_row' do
-  #   subject(:diag_rows) { described_class.new }
-  #   it 'returns all diagonals with four or more spaces as separate  2D arrays with 4' do
-  #     array = diag_rows.board_array
-  #     expect(diag_rows.diagonal_to_row(array)).to eq(
-  #       [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' '], 
-  #        [' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ']]
-  #     )
-  #   end
-  # end
+  describe '#diagonal_to_row' do
+    subject(:diag_rows) { described_class.new }
+    it 'returns all diagonals with four or more spaces as separate  2D arrays with 4' do
+      array = diag_rows.board_array
+      expect(diag_rows.diagonal_to_row(array)).to eq(
+        [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' '],
+         [' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ']]
+      )
+    end
+  end
 end

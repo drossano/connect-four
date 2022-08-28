@@ -75,17 +75,47 @@ class Board
   
   def diagonal_to_row(array)
     grouped_diags = []
-    y = 0
-    array[0].map do
-      
+    column_to_hash(array[0]).map do |index, element|
       diag_array = []
-      x = 0
-      z = y + 1
-      y += 1
-      until array[x][z].nil? || z < 0
-        diag_array.push(array[x][z])
-        x += 1
-        z -= 1
+      column_pos = 0
+      row_pos = index
+      until array[column_pos][row_pos].nil? || row_pos < 0
+        diag_array.push(array[column_pos][row_pos])
+        column_pos += 1
+        row_pos -= 1
+      end
+      grouped_diags.push(diag_array)
+    end
+    column_to_hash(array[0]).map do |index, element|
+      diag_array = []
+      column_pos = 0
+      row_pos = index
+      until array[column_pos][row_pos].nil? || row_pos < 0
+        diag_array.push(array[column_pos][row_pos])
+        column_pos += 1
+        row_pos += 1
+      end
+      grouped_diags.push(diag_array)
+    end
+    column_to_hash(array[6]).map do |index, element|
+      diag_array = []
+      column_pos = 0
+      row_pos = index
+      until array[column_pos][row_pos].nil? || row_pos < 0
+        diag_array.push(array[column_pos][row_pos])
+        column_pos -= 1
+        row_pos -= 1
+      end
+      grouped_diags.push(diag_array)
+    end
+    column_to_hash(array[6]).map do |index, element|
+      diag_array = []
+      column_pos = 0
+      row_pos = index
+      until array[column_pos][row_pos].nil? || row_pos < 0
+        diag_array.push(array[column_pos][row_pos])
+        column_pos -= 1
+        row_pos += 1
       end
       grouped_diags.push(diag_array)
     end
