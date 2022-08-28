@@ -1,5 +1,6 @@
 require_relative '../lib/board'
 
+
 describe Board do
   subject(:game_board_array) { described_class.new }
   describe '#initialize' do
@@ -206,4 +207,32 @@ describe Board do
       end
     end
   end
+
+  describe '#column_to_hash' do
+    subject(:column_hash) { described_class.new }
+    context 'when the first column has no pieces' do
+      it 'returns a hasn with the key being the index of the respective element' do
+        column = column_hash.board_array[0]
+        expect(column_hash.column_to_hash(column)).to eq( {0 => ' ', 1 => ' ', 2 => ' ', 3 => ' ', 4 => ' ', 5 => ' ' })
+      end
+    end
+    context 'when the first column has pieces' do
+      it 'returns a hasn with the key being the index of the respective element' do
+        column = ['⚪', '⚪', '⚪', '⚪', '⚫', '⚫']
+
+        expect(column_hash.column_to_hash(column)).to eq( {0 => '⚪', 1 => '⚪', 2 => '⚪', 3 => '⚪', 4 => '⚫', 5 => '⚫' })
+      end
+    end
+  end
+
+  # describe '#diagonal_to_row' do
+  #   subject(:diag_rows) { described_class.new }
+  #   it 'returns all diagonals with four or more spaces as separate  2D arrays with 4' do
+  #     array = diag_rows.board_array
+  #     expect(diag_rows.diagonal_to_row(array)).to eq(
+  #       [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' '], 
+  #        [' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ']]
+  #     )
+  #   end
+  # end
 end

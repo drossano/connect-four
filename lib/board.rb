@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # Stores, manipulates and displays game board.
 class Board
   attr_reader :board_array
@@ -72,5 +71,34 @@ class Board
 
   def row_win(board_array)
     column_win(board_array.transpose)
+  end
+  
+  def diagonal_to_row(array)
+    grouped_diags = []
+    y = 0
+    array[0].map do
+      
+      diag_array = []
+      x = 0
+      z = y + 1
+      y += 1
+      until array[x][z].nil? || z < 0
+        diag_array.push(array[x][z])
+        x += 1
+        z -= 1
+      end
+      grouped_diags.push(diag_array)
+    end
+    grouped_diags.select { |group| group.length >= 4 }
+  end
+
+  def column_to_hash(array)
+    column_hash = {}
+    index = 0
+    array.each do |element|
+      column_hash[index] = element
+      index += 1
+    end
+    column_hash
   end
 end
