@@ -20,7 +20,7 @@ class GameLogic
 
   def player_turn(color)
     puts "Please enter the column that you would like to drop your piece."
-    input = gets.chomp
+    input = gets.chomp.to_i
     verified_input = verify_input(input)
     if verified_input == true
       @board.drop_piece(input - 1, color)

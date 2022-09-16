@@ -32,16 +32,16 @@ describe GameLogic do
   end
 
   describe "#player_turn" do
-    let(:board_turn) { instance_double(Board) }
     subject(:game_turn) { described_class.new }
     context 'when a valid input is entered' do
       before do
         allow(game_turn).to receive(:puts)
-        valid_column = 3
-        allow(game_turn).to receive(:verify_input).with(valid_column).and_return true
+        valid_column = '3'
+        allow(game_turn).to receive(:gets).and_return(valid_column)
       end
       it 'ends the loop and sends the move to the board' do
-        expect(board_turn).to receive(:drop_piece).with('white', 2)
+        board = game_turn.instance_variable_get(:@board)
+        expect(board).to receive(:drop_piece).with(2, 'white')
         game_turn.player_turn('white')
       end
     end
