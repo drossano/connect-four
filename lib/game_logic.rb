@@ -9,9 +9,9 @@ class GameLogic
   end
 
   def verify_input(input)
-    if input.between?(0,@board.board_array.length() - 1) && @board.column_full?(@board.board_array[input]) == false
+    if input.between?(0,@board.board_array.length()) && @board.column_full?(@board.board_array[input]) == false
       true
-    elsif input.between?(0,@board.board_array.length() - 1) == false
+    elsif input.between?(0,@board.board_array.length()) == false
       'Invalid input. Please enter a number between 1 and 7.'
     elsif @board.column_full?(@board.board_array[input]) == true
       'This column is full, please choose another column.'
@@ -19,11 +19,16 @@ class GameLogic
   end
 
   def player_turn(color)
-    puts "Please enter the column that you would like to drop your piece."
-    input = gets.chomp.to_i
-    verified_input = verify_input(input)
-    if verified_input == true
-      @board.drop_piece(input - 1, color)
-    end 
+    loop do
+      puts "Please enter the column that you would like to drop your piece."
+      input = gets.chomp.to_i - 1
+      verified_input = verify_input(input)
+      if verified_input == true
+        @board.drop_piece(input, color)
+        break
+      else
+        puts verified_input
+      end
+    end
   end
 end

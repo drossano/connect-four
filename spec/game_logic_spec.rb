@@ -45,6 +45,39 @@ describe GameLogic do
         game_turn.player_turn('white')
       end
     end
+
+    context 'when an invalid input is entered and then a valid input' do
+      before do
+        allow(game_turn).to receive(:puts)
+        valid_column = '3'
+        invalid_column = '10'
+        allow(game_turn).to receive(:gets).and_return(invalid_column, valid_column)
+      end
+      it 'returns an error message once then ends the loop and sends the move to the board' do
+        board = game_turn.instance_variable_get(:@board)
+        error_message = 'Invalid input. Please enter a number between 1 and 7.'
+        expect(game_turn).to receive(:puts).with(error_message)
+        expect(board).to receive(:drop_piece).with(2, 'white')
+        game_turn.player_turn('white')
+      end
+    end
+
+    context 'when a full column is entered and then a valid input' do
+      before do
+        board = game_turn.instance_variable_get(:@board)
+        board.board_array[3] = ['⚫', '⚪', '⚪', '⚪', '⚫', '⚫']
+        allow(game_turn).to receive(:puts)
+        valid_column = '3'
+        full_column = '4'
+        allow(game_turn).to receive(:gets).and_return(full_column, valid_column)
+      end
+      it 'returns an error message once then ends the loop and sends the move to the board' do
+        board = game_turn.instance_variable_get(:@board)
+        error_message = 'This column is full, please choose another column.'
+        expect(game_turn).to receive(:puts).with(error_message)
+        expect(board).to receive(:drop_piece).with(2, 'white')
+        game_turn.player_turn('white')
+      end
+    end
   end
-  
 end
