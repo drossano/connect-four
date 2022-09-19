@@ -9,11 +9,11 @@ class GameLogic
   end
 
   def verify_input(input)
-    if input.between?(0,@board.board_array.length()) && @board.column_full?(@board.board_array[input]) == false
+    if input.between?(0, @board.board_array.length()) && @board.column_full?(input) == false
       true
-    elsif input.between?(0,@board.board_array.length()) == false
+    elsif input.between?(0, @board.board_array.length()) == false
       'Invalid input. Please enter a number between 1 and 7.'
-    elsif @board.column_full?(@board.board_array[input]) == true
+    elsif @board.column_full?(input) == true
       'This column is full, please choose another column.'
     end
   end
@@ -29,6 +29,24 @@ class GameLogic
       else
         puts verified_input
       end
+    end
+  end
+
+  def check_for_win
+    if @board.column_win(@board.board_array) == true || @board.row_win(@board.board_array) == true || @board.diagonal_win(@board.board_array) == true
+      true
+    end
+  end
+
+  def play_game
+    loop do
+      puts @board.draw_board(@board.board_array)
+      player_turn(@player1.color)
+      puts @board.draw_board(@board.board_array)
+      break if check_for_win == true
+      player_turn(@player2.color)
+      puts @board.draw_board(@board.board_array)
+      break if check_for_win == true
     end
   end
 end

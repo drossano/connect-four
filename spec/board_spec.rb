@@ -5,13 +5,13 @@ describe Board do
   subject(:game_board_array) { described_class.new }
   describe '#initialize' do
     it 'creates a 2D array of 7 arrays containing 6 string spaces' do
-      expect(game_board_array.board_array).to eq([[" ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " "], 
-        [" ", " ", " ", " ", " ", " "],
-        [" ", " ", " ", " ", " ", " "],
-        [" ", " ", " ", " ", " ", " "]])
+      expect(game_board_array.board_array).to eq([["  ", "  ", "  ", "  ", "  ", "  "], 
+        ["  ", "  ", "  ", "  ", "  ", "  "], 
+        ["  ", "  ", "  ", "  ", "  ", "  "], 
+        ["  ", "  ", "  ", "  ", "  ", "  "], 
+        ["  ", "  ", "  ", "  ", "  ", "  "],
+        ["  ", "  ", "  ", "  ", "  ", "  "],
+        ["  ", "  ", "  ", "  ", "  ", "  "]])
     end
   end
 
@@ -21,48 +21,48 @@ describe Board do
       it 'shows an empty board' do
         expect(draw_game_board.draw_board(draw_game_board.board_array)).to eq(
           '  1   2   3   4   5   6   7  ' + "\n" +
-          '┌───┬───┬───┬───┬───┬───┬───┐' + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "└───┴───┴───┴───┴───┴───┴───┘")
+          '┌────┬────┬────┬────┬────┬────┬────┐' + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "└────┴────┴────┴────┴────┴────┴────┘")
       end
     end
 
     context 'when the board array contains values' do
       it 'displays those values in the correct spaces' do
         piece = draw_game_board.instance_variable_get(:@black_piece)
-        filled_array = [[" ", " ", " ", " ", " ", piece],
-        [" ", " ", " ", " ", piece, piece],
-        [" ", " ", " ", " ", " ", " "],
-        [" ", " ", " ", " ", " ", " "],
-        [" ", " ", " ", " ", " ", " "],
-        [" ", " ", " ", " ", " ", " "],
-        [" ", " ", " ", " ", " ", " "]]
+        filled_array = [["  ", "  ", "  ", "  ", "  ", piece],
+        ["  ", "  ", "  ", "  ", piece, piece],
+        ["  ", "  ", "  ", "  ", "  ", "  "],
+        ["  ", "  ", "  ", "  ", "  ", "  "],
+        ["  ", "  ", "  ", "  ", "  ", "  "],
+        ["  ", "  ", "  ", "  ", "  ", "  "],
+        ["  ", "  ", "  ", "  ", "  ", "  "]]
 
         expect(draw_game_board.draw_board(filled_array)).to eq(
           '  1   2   3   4   5   6   7  ' + "\n" +
-          '┌───┬───┬───┬───┬───┬───┬───┐' + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │   │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│   │ #{piece} │   │   │   │   │   │" + "\n" +
-          "├───┼───┼───┼───┼───┼───┼───┤" + "\n" +
-          "│ #{piece} │ #{piece} │   │   │   │   │   │" + "\n" +
-          "└───┴───┴───┴───┴───┴───┴───┘"
+          '┌────┬────┬────┬────┬────┬────┬────┐' + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │    │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│    │ #{piece} │    │    │    │    │    │" + "\n" +
+          "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
+          "│ #{piece} │ #{piece} │    │    │    │    │    │" + "\n" +
+          "└────┴────┴────┴────┴────┴────┴────┘"
         )
       end
     end
@@ -72,43 +72,40 @@ describe Board do
     subject(:filling_board) { described_class.new }
     context 'when the specified column isnt full' do
       it 'returns false' do
-        piece = filling_board.instance_variable_get(:@black_piece)
-        non_full_column = [" ", " ", " ", " ", piece, piece]
-        expect(filling_board.column_full?(non_full_column)).to be false
+        expect(filling_board.column_full?(1)).to be false
       end
     end
 
     context 'when the specified column is full' do
       it 'returns true' do
         piece = filling_board.instance_variable_get(:@black_piece)
-        non_full_column = [piece, piece, piece, piece, piece, piece]
-        expect(filling_board.column_full?(non_full_column)).to be true
+        array = filling_board.board_array
+        array[0] = [piece, piece, piece, piece, piece, piece]
+        expect(filling_board.column_full?(0)).to be true
       end
     end
   end
 
   describe '#drop_piece' do
-    subject(:dropping_piece) { described_class.new}
+    subject(:dropping_piece) { described_class.new }
     context 'when the column is empty and its the black pieces turn' do
-      column = Array.new(6, ' ')
       before do
-        allow(dropping_piece).to receive(:column_empty?).with(column).and_return(true)
-        dropping_piece.drop_piece(column, "black")
+        allow(dropping_piece).to receive(:column_empty?).with(0).and_return(true)
+        dropping_piece.drop_piece(0, "black")
       end
       it 'places a black piece at the bottom of it' do
         black_piece = dropping_piece.instance_variable_get(:@black_piece)
-        expect(column).to eq([" ", " ", " ", " ", " ", black_piece])
+        expect(dropping_piece.board_array[0]).to eq(["  ", "  ", "  ", "  ", "  ", black_piece])
       end
     end
     context 'when the column is empty and its the white pieces turn' do
-      column = Array.new(6, ' ')
       before do
-        allow(dropping_piece).to receive(:column_empty?).with(column).and_return(true)
-        dropping_piece.drop_piece(column, "white")
+        allow(dropping_piece).to receive(:column_empty?).with(0).and_return(true)
+        dropping_piece.drop_piece(0, "white")
       end
       it 'places a black piece at the bottom of it' do
         white_piece = dropping_piece.instance_variable_get(:@white_piece)
-        expect(column).to eq([" ", " ", " ", " ", " ", white_piece])
+        expect(dropping_piece.board_array[0]).to eq(["  ", "  ", "  ", "  ", "  ", white_piece])
       end
     end
 
@@ -116,10 +113,12 @@ describe Board do
       it 'drops the new piece on top of the existing piece' do
         white_piece = dropping_piece.instance_variable_get(:@white_piece)
         black_piece = dropping_piece.instance_variable_get(:@black_piece)
-        column = [" ", " ", " ", " ", " ", black_piece]
+        array = dropping_piece.board_array
+        array[0] = ["  ", "  ", "  ", "  ", "  ", black_piece]
+        column = 0
         allow(dropping_piece).to receive(:column_empty?).with(column).and_return(false)
         dropping_piece.drop_piece(column, "white")
-        expect(column).to eq([" ", " ", " ", " ", white_piece, black_piece])
+        expect(array[column]).to eq(["  ", "  ", "  ", "  ", white_piece, black_piece])
       end
     end
 
@@ -127,10 +126,12 @@ describe Board do
       it 'drops the new piece on top of the existing pieces' do
         white_piece = dropping_piece.instance_variable_get(:@white_piece)
         black_piece = dropping_piece.instance_variable_get(:@black_piece)
-        column = [" ", " ", " ", black_piece, white_piece, black_piece]
+        array = dropping_piece.board_array
+        array[0] = ["  ", "  ", "  ", black_piece, white_piece, black_piece]
+        column = 0
         allow(dropping_piece).to receive(:column_empty?).with(column).and_return(false)
         dropping_piece.drop_piece(column, "white")
-        expect(column).to eq([" ", " ", white_piece, black_piece, white_piece, black_piece])
+        expect(array[column]).to eq(["  ", "  ", white_piece, black_piece, white_piece, black_piece])
       end
     end
 
@@ -213,7 +214,7 @@ describe Board do
     context 'when the first column has no pieces' do
       it 'returns a hasn with the key being the index of the respective element' do
         column = column_hash.board_array[0]
-        expect(column_hash.column_to_hash(column)).to eq( {0 => ' ', 1 => ' ', 2 => ' ', 3 => ' ', 4 => ' ', 5 => ' ' })
+        expect(column_hash.column_to_hash(column)).to eq( {0 => '  ', 1 => '  ', 2 => '  ', 3 => '  ', 4 => '  ', 5 => '  ' })
       end
     end
     context 'when the first column has pieces' do
@@ -230,10 +231,10 @@ describe Board do
     it 'returns all diagonals with four or more spaces as separate  2D arrays with 4' do
       array = diag_rows.board_array
       expect(diag_rows.diagonal_to_row(array)).to eq(
-        [[' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' '],
-         [' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' '],
-         [' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' ', ' '],
-         [' ', ' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ', ' '], [' ', ' ', ' ', ' ']]
+        [['  ', '  ', '  ', '  '], ['  ', '  ', '  ', '  ', '  '], ['  ', '  ', '  ', '  ', '  ', '  '],
+         ['  ', '  ', '  ', '  ', '  ', '  '], ['  ', '  ', '  ', '  ', '  '], ['  ', '  ', '  ', '  '],
+         ['  ', '  ', '  ', '  '], ['  ', '  ', '  ', '  ', '  '], ['  ', '  ', '  ', '  ', '  ', '  '],
+         ['  ', '  ', '  ', '  ', '  ', '  '], ['  ', '  ', '  ', '  ', '  '], ['  ', '  ', '  ', '  ']]
       )
     end
   end

@@ -21,7 +21,7 @@ describe GameLogic do
     context 'when a given a full column' do
       before do
         board = game_verify.instance_variable_get(:@board)
-        allow(board).to receive(:column_full?).with(board.board_array[3]).and_return(true)
+        allow(board).to receive(:column_full?).with(3).and_return(true)
       end
       it 'returns an error message' do
         full_column = 3
