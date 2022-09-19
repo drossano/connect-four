@@ -4,8 +4,8 @@ require_relative 'board'
 class GameLogic
   def initialize
     @board = Board.new
-    @player1 = Player.new('white')
-    @player2 = Player.new('black')
+    @player1 = Player.new('white', 1)
+    @player2 = Player.new('black', 2)
   end
 
   def verify_input(input)
@@ -18,9 +18,9 @@ class GameLogic
     end
   end
 
-  def player_turn(color)
+  def player_input(color, number)
     loop do
-      puts "Please enter the column that you would like to drop your piece."
+      puts "Player #{number} enter the column that you would like to drop your piece."
       input = gets.chomp.to_i - 1
       verified_input = verify_input(input)
       if verified_input == true
@@ -31,6 +31,14 @@ class GameLogic
       end
     end
   end
+  
+  def player_turn(player)
+    player_input(player.color, player.player_number)
+      puts @board.draw_board(@board.board_array)
+      if check_for_win == true
+        puts "Congrats Player #{player.player_number}, you win!"
+      end
+  end
 
   def check_for_win
     if @board.column_win(@board.board_array) == true || @board.row_win(@board.board_array) == true || @board.diagonal_win(@board.board_array) == true
@@ -39,20 +47,13 @@ class GameLogic
   end
 
   def play_game
+    puts 'Welcome to Connect 4!'
     puts @board.draw_board(@board.board_array)
     loop do
-      player_turn(@player1.color)
-      puts @board.draw_board(@board.board_array)
-      if check_for_win == true
-        puts "Congrats Player 1, you win!"
-        break
-      end
-      player_turn(@player2.color)
-      puts @board.draw_board(@board.board_array)
-      if check_for_win == true
-        puts "Congrats Player 2, you win!"
-        break
-      end
+      player_turn(@player1)
+      break if check_for_win == true
+      player_turn(@player2)
+      break if check_for_win == true
     end
   end
 end
