@@ -20,7 +20,7 @@ describe Board do
     context 'when the board array is empty' do
       it 'shows an empty board' do
         expect(draw_game_board.draw_board(draw_game_board.board_array)).to eq(
-          '  1   2   3   4   5   6   7  ' + "\n" +
+          '  1    2    3    4    5    6    7 ' + "\n" +
           '┌────┬────┬────┬────┬────┬────┬────┐' + "\n" +
           "│    │    │    │    │    │    │    │" + "\n" +
           "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
@@ -49,7 +49,7 @@ describe Board do
         ["  ", "  ", "  ", "  ", "  ", "  "]]
 
         expect(draw_game_board.draw_board(filled_array)).to eq(
-          '  1   2   3   4   5   6   7  ' + "\n" +
+          '  1    2    3    4    5    6    7 ' + "\n" +
           '┌────┬────┬────┬────┬────┬────┬────┐' + "\n" +
           "│    │    │    │    │    │    │    │" + "\n" +
           "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
