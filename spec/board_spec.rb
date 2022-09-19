@@ -163,6 +163,14 @@ describe Board do
       end
     end
 
+    context 'when the third column has alternating pieces in a row' do
+      it 'returns false' do
+        array = board_column.board_array
+        array[2] = ['⚪', '⚫', '⚪', '⚫', '⚪', '⚫']
+        expect(board_column.column_win(array)).to be false
+      end
+    end
+
     context 'when there are no pieces' do
       it 'returns false' do
         array = board_column.board_array

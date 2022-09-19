@@ -60,10 +60,10 @@ class Board
   def column_win(board_array)
     board_array.any? do |column|
       column.each_cons(4).any? do |group|
-        if group.include?('  ')
-          false
-        else
+        if group.all?('⚪') || group.all?('⚫')
           true
+        else
+          false
         end
       end
     end
