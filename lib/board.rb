@@ -75,53 +75,28 @@ class Board
   
   def diagonal_to_row(array)
     grouped_diags = []
-    column_to_hash(array[0]).map do |index, element|
-      diag_array = []
-      column_pos = 0
-      row_pos = index
-      until array[column_pos][row_pos].nil? || row_pos < 0
-        diag_array.push(array[column_pos][row_pos])
-        column_pos += 1
-        row_pos -= 1
-      end
-      grouped_diags.push(diag_array)
-    end
-    column_to_hash(array[0]).map do |index, element|
-      diag_array = []
-      column_pos = 0
-      row_pos = index
-      until array[column_pos][row_pos].nil? || row_pos < 0
-        diag_array.push(array[column_pos][row_pos])
-        column_pos += 1
-        row_pos += 1
-      end
-      grouped_diags.push(diag_array)
-    end
-    column_to_hash(array[6]).map do |index, element|
-      diag_array = []
-      column_pos = 0
-      row_pos = index
-      until array[column_pos][row_pos].nil? || row_pos < 0
-        diag_array.push(array[column_pos][row_pos])
-        column_pos -= 1
-        row_pos -= 1
-      end
-      grouped_diags.push(diag_array)
-    end
-    column_to_hash(array[6]).map do |index, element|
-      diag_array = []
-      column_pos = 0
-      row_pos = index
-      until array[column_pos][row_pos].nil? || row_pos < 0
-        diag_array.push(array[column_pos][row_pos])
-        column_pos -= 1
-        row_pos += 1
-      end
-      grouped_diags.push(diag_array)
-    end
+    (traverse_diagonals(array, 0, 1, -1)).each { |diag_array| grouped_diags.push(diag_array)}
+    (traverse_diagonals(array, 0, 1, 1)).each { |diag_array| grouped_diags.push(diag_array)}
+    (traverse_diagonals(array, 6, -1, -1)).each { |diag_array| grouped_diags.push(diag_array)}
+    (traverse_diagonals(array, 6, -1, 1)).each { |diag_array| grouped_diags.push(diag_array)}
     grouped_diags.select { |group| group.length >= 4 }
   end
 
+  def traverse_diagonals(array, starting_column, column_direction, row_direction)
+    column_to_hash(array[starting_column ]).map do |index, element|
+      diag_array = []
+      column_pos = 0
+      row_pos = index
+      until array[column_pos][row_pos].nil? || row_pos < 0
+        diag_array.push(array[column_pos][row_pos])
+        column_pos += column_direction
+        row_pos += row_direction
+      end
+      diag_array
+    end
+  end
+
+  
   def column_to_hash(array)
     column_hash = {}
     index = 0

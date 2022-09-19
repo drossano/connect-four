@@ -31,7 +31,7 @@ describe GameLogic do
     end
   end
 
-  describe "#player_turn" do
+  describe "#player_input" do
     subject(:game_turn) { described_class.new }
     context 'when a valid input is entered' do
       before do
@@ -42,7 +42,7 @@ describe GameLogic do
       it 'ends the loop and sends the move to the board' do
         board = game_turn.instance_variable_get(:@board)
         expect(board).to receive(:drop_piece).with(2, 'white')
-        game_turn.player_turn('white')
+        game_turn.player_input('white', 1)
       end
     end
 
@@ -58,7 +58,7 @@ describe GameLogic do
         error_message = 'Invalid input. Please enter a number between 1 and 7.'
         expect(game_turn).to receive(:puts).with(error_message)
         expect(board).to receive(:drop_piece).with(2, 'white')
-        game_turn.player_turn('white')
+        game_turn.player_input('white', 1)
       end
     end
 
@@ -76,7 +76,7 @@ describe GameLogic do
         error_message = 'This column is full, please choose another column.'
         expect(game_turn).to receive(:puts).with(error_message)
         expect(board).to receive(:drop_piece).with(2, 'white')
-        game_turn.player_turn('white')
+        game_turn.player_input('white', 1)
       end
     end
 
@@ -97,7 +97,7 @@ describe GameLogic do
         expect(game_turn).to receive(:puts).with(full_error_message)
         expect(game_turn).to receive(:puts).with(invalid_error_message)
         expect(board).to receive(:drop_piece).with(2, 'white')
-        game_turn.player_turn('white')
+        game_turn.player_input('white', 1)
       end
     end
   end
