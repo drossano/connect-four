@@ -39,14 +39,20 @@ class GameLogic
   end
 
   def play_game
+    puts @board.draw_board(@board.board_array)
     loop do
-      puts @board.draw_board(@board.board_array)
       player_turn(@player1.color)
       puts @board.draw_board(@board.board_array)
-      break if check_for_win == true
+      if check_for_win == true
+        puts "Congrats Player 1, you win!"
+        break
+      end
       player_turn(@player2.color)
       puts @board.draw_board(@board.board_array)
-      break if check_for_win == true
+      if check_for_win == true
+        puts "Congrats Player 2, you win!"
+        break
+      end
     end
   end
 end
