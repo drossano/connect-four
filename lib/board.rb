@@ -11,27 +11,27 @@ class Board
 
   def draw_board(array)
     '  1    2    3    4    5    6    7 ' + "\n" +
-    '┌────┬────┬────┬────┬────┬────┬────┐' + "\n" +
-    "│ #{array[0][0]} │ #{array[1][0]} │ #{array[2][0]} │ #{array[3][0]} │ #{array[4][0]} │ #{array[5][0]} │ #{array[6][0]} │" + "\n" +
-    "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
-    "│ #{array[0][1]} │ #{array[1][1]} │ #{array[2][1]} │ #{array[3][1]} │ #{array[4][1]} │ #{array[5][1]} │ #{array[6][1]} │" + "\n" +
-    "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
-    "│ #{array[0][2]} │ #{array[1][2]} │ #{array[2][2]} │ #{array[3][2]} │ #{array[4][2]} │ #{array[5][2]} │ #{array[6][2]} │" + "\n" +
-    "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
-    "│ #{array[0][3]} │ #{array[1][3]} │ #{array[2][3]} │ #{array[3][3]} │ #{array[4][3]} │ #{array[5][3]} │ #{array[6][3]} │" + "\n" +
-    "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
-    "│ #{array[0][4]} │ #{array[1][4]} │ #{array[2][4]} │ #{array[3][4]} │ #{array[4][4]} │ #{array[5][4]} │ #{array[6][4]} │" + "\n" +
-    "├────┼────┼────┼────┼────┼────┼────┤" + "\n" +
-    "│ #{array[0][5]} │ #{array[1][5]} │ #{array[2][5]} │ #{array[3][5]} │ #{array[4][5]} │ #{array[5][5]} │ #{array[6][5]} │" + "\n" +
-    '└────┴────┴────┴────┴────┴────┴────┘'
+      '┌────┬────┬────┬────┬────┬────┬────┐' + "\n" \
+      "│ #{array[0][0]} │ #{array[1][0]} │ #{array[2][0]} │ #{array[3][0]} │ #{array[4][0]} │ #{array[5][0]} │ #{array[6][0]} │" + "\n" \
+      '├────┼────┼────┼────┼────┼────┼────┤' + "\n" \
+      "│ #{array[0][1]} │ #{array[1][1]} │ #{array[2][1]} │ #{array[3][1]} │ #{array[4][1]} │ #{array[5][1]} │ #{array[6][1]} │" + "\n" \
+      '├────┼────┼────┼────┼────┼────┼────┤' + "\n" \
+      "│ #{array[0][2]} │ #{array[1][2]} │ #{array[2][2]} │ #{array[3][2]} │ #{array[4][2]} │ #{array[5][2]} │ #{array[6][2]} │" + "\n" \
+      '├────┼────┼────┼────┼────┼────┼────┤' + "\n" \
+      "│ #{array[0][3]} │ #{array[1][3]} │ #{array[2][3]} │ #{array[3][3]} │ #{array[4][3]} │ #{array[5][3]} │ #{array[6][3]} │" + "\n" \
+      '├────┼────┼────┼────┼────┼────┼────┤' + "\n" \
+      "│ #{array[0][4]} │ #{array[1][4]} │ #{array[2][4]} │ #{array[3][4]} │ #{array[4][4]} │ #{array[5][4]} │ #{array[6][4]} │" + "\n" \
+      '├────┼────┼────┼────┼────┼────┼────┤' + "\n" \
+      "│ #{array[0][5]} │ #{array[1][5]} │ #{array[2][5]} │ #{array[3][5]} │ #{array[4][5]} │ #{array[5][5]} │ #{array[6][5]} │" + "\n" \
+      '└────┴────┴────┴────┴────┴────┴────┘'
   end
 
   def column_full?(column)
-    @board_array[column].none?("  ")
+    @board_array[column].none?('  ')
   end
 
   def column_empty?(column)
-    @board_array[column].all?("  ")
+    @board_array[column].all?('  ')
   end
 
   def pick_piece(color)
@@ -44,16 +44,14 @@ class Board
 
   def drop_piece(column, color)
     piece = pick_piece(color)
-    unless column_full?(column)
-      if column_empty?(column)
-        @board_array[column].shift
-        @board_array[column].push(piece)
-      else
-        first_empty_space = @board_array[column].rindex("  ")
-        @board_array[column][first_empty_space] = piece
-      end
-    else
+    if column_full?(column)
       false
+    elsif column_empty?(column)
+      @board_array[column].shift
+      @board_array[column].push(piece)
+    else
+      first_empty_space = @board_array[column].rindex('  ')
+      @board_array[column][first_empty_space] = piece
     end
   end
 
@@ -72,13 +70,13 @@ class Board
   def row_win(board_array)
     column_win(board_array.transpose)
   end
-  
+
   def diagonal_to_row(array)
     grouped_diags = []
-    (traverse_diagonals(array, 0, 1, -1)).each { |diag_array| grouped_diags.push(diag_array)}
-    (traverse_diagonals(array, 0, 1, 1)).each { |diag_array| grouped_diags.push(diag_array)}
-    (traverse_diagonals(array, 6, -1, -1)).each { |diag_array| grouped_diags.push(diag_array)}
-    (traverse_diagonals(array, 6, -1, 1)).each { |diag_array| grouped_diags.push(diag_array)}
+    traverse_diagonals(array, 0, 1, -1).each { |diag_array| grouped_diags.push(diag_array) }
+    traverse_diagonals(array, 0, 1, 1).each { |diag_array| grouped_diags.push(diag_array) }
+    traverse_diagonals(array, 6, -1, -1).each { |diag_array| grouped_diags.push(diag_array) }
+    traverse_diagonals(array, 6, -1, 1).each { |diag_array| grouped_diags.push(diag_array) }
     grouped_diags.select { |group| group.length >= 4 }
   end
 
@@ -96,7 +94,6 @@ class Board
     end
   end
 
-  
   def column_to_hash(array)
     column_hash = {}
     index = 0

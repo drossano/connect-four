@@ -31,19 +31,15 @@ class GameLogic
       end
     end
   end
-  
+
   def player_turn(player)
     player_input(player.color, player.player_number)
-      puts @board.draw_board(@board.board_array)
-      if check_for_win == true
-        puts "Congrats Player #{player.player_number}, you win!"
-      end
+    puts @board.draw_board(@board.board_array)
+    puts "Congrats Player #{player.player_number}, you win!" if check_for_win == true
   end
 
   def check_for_win
-    if @board.column_win(@board.board_array) == true || @board.row_win(@board.board_array) == true || @board.diagonal_win(@board.board_array) == true
-      true
-    end
+    true if @board.column_win(@board.board_array) == true || @board.row_win(@board.board_array) == true || @board.diagonal_win(@board.board_array) == true
   end
 
   def play_game
